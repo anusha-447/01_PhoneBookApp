@@ -54,7 +54,7 @@ public class ContactServiceImpl implements IContactService {
 	public Boolean deleteContact(Integer id) {
 		// TODO Auto-generated method stub
 		crepo.deleteById(id);
-		return id==null;
+		return true;
 	}
 
 	@Override

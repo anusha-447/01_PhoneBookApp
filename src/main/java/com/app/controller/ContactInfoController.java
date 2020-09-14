@@ -33,8 +33,12 @@ public class ContactInfoController {
 		
 		boolean isave=contactService.saveContact(contact);
 		if(isave) {
-			attribute.addFlashAttribute("success", "contact saved successfully");
+			if(contact.getCntctid()!=null) {
+			attribute.addFlashAttribute("success", "contact updated successfully");
 		}
+		else {
+			attribute.addFlashAttribute("success", "contact saved successfully");
+		}}
 		else {
 			attribute.addFlashAttribute("fail", "contact is saving is failed ");
 		}

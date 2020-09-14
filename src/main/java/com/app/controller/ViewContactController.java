@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.app.model.Contact;
 import com.app.service.IContactService;
@@ -24,12 +25,12 @@ public class ViewContactController {
 		return "index";
 	}
 	@GetMapping("/deleteContact")
-	public String deleteContact(@RequestParam("contact_id") Integer id,Model model) {
+	public String deleteContact(@RequestParam("contact_id") Integer id,RedirectAttributes attr) {
 		System.out.println(id);
 		Boolean status=contactService.deleteContact(id);
 		String message="contact is '"+id+"' deleted";
-		model.addAttribute("status",message);
+		attr.addFlashAttribute("status",message);
 		
-		return "ViewContacts";
+		return "redirect:/viewContacts";
 	}
 }
